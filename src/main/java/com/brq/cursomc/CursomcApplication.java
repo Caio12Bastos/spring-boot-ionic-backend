@@ -13,6 +13,7 @@ import com.brq.cursomc.domain.CidadeDomain;
 import com.brq.cursomc.domain.ClienteDomain;
 import com.brq.cursomc.domain.EnderecoDomain;
 import com.brq.cursomc.domain.EstadoDomain;
+import com.brq.cursomc.domain.ItemPedidoDomain;
 import com.brq.cursomc.domain.PagamentoBoletoDomain;
 import com.brq.cursomc.domain.PagamentoCartaoDomain;
 import com.brq.cursomc.domain.PagamentoDomain;
@@ -25,6 +26,7 @@ import com.brq.cursomc.repositories.CidadeRepository;
 import com.brq.cursomc.repositories.ClienteRepository;
 import com.brq.cursomc.repositories.EnderecoRepository;
 import com.brq.cursomc.repositories.EstadoRepository;
+import com.brq.cursomc.repositories.ItemPedidoRepository;
 import com.brq.cursomc.repositories.PagamentoRepository;
 import com.brq.cursomc.repositories.PedidoRepository;
 import com.brq.cursomc.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class CursomcApplication implements CommandLineRunner {
 
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -125,6 +130,20 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		pedidoRepository.saveAll(Arrays.asList(pedidoDomain1, pedidoDomain2));
 		pagamentoRepository.saveAll(Arrays.asList(pagamentoDomain1, pagamentoDomain2));
+		
+		ItemPedidoDomain itemPedidoDomain1 = new ItemPedidoDomain(pedidoDomain1, produtoDomain1, 0.00, 1, 2000.00);
+		ItemPedidoDomain itemPedidoDomain2 = new ItemPedidoDomain(pedidoDomain1, produtoDomain3, 0.00, 2, 80.00);
+		ItemPedidoDomain itemPedidoDomain3 = new ItemPedidoDomain(pedidoDomain2, produtoDomain2, 100.00, 1, 800.00);
+		
+		pedidoDomain1.getItens().addAll(Arrays.asList(itemPedidoDomain1, itemPedidoDomain2));
+		pedidoDomain2.getItens().addAll(Arrays.asList(itemPedidoDomain3));
+		
+		produtoDomain1.getItens().addAll(Arrays.asList(itemPedidoDomain1));
+		produtoDomain2.getItens().addAll(Arrays.asList(itemPedidoDomain3));
+		produtoDomain3.getItens().addAll(Arrays.asList(itemPedidoDomain2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(itemPedidoDomain1, itemPedidoDomain2, itemPedidoDomain3));
+	
 	}
 
 }

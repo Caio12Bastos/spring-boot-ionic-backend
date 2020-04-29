@@ -2,7 +2,9 @@ package com.brq.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -35,6 +38,9 @@ public class ProdutoDomain implements Serializable {
 	)
 	private List<CategoriaDomain> categorias = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "id.produto")
+	private Set<ItemPedidoDomain> itens = new HashSet<>();
+	
 	public ProdutoDomain() {
 		
 	}
@@ -46,6 +52,15 @@ public class ProdutoDomain implements Serializable {
 		this.preco = preco;
 	}
 
+	public List<PedidoDomain> getPedidos() {
+		List<PedidoDomain> listaPedidos = new ArrayList<>();
+		
+		for(ItemPedidoDomain itemPedido : itens) {
+			listaPedidos.add(itemPedido.getPedido());
+		}
+		
+		return listaPedidos;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -78,6 +93,14 @@ public class ProdutoDomain implements Serializable {
 		this.categorias = categorias;
 	}
 
+	public Set<ItemPedidoDomain> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedidoDomain> itens) {
+		this.itens = itens;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -102,5 +125,5 @@ public class ProdutoDomain implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
