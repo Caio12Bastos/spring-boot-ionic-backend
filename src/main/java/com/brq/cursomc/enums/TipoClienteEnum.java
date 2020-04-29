@@ -1,6 +1,6 @@
 package com.brq.cursomc.enums;
 
-public enum TipoCliente {
+public enum TipoClienteEnum {
 
 	PESSOAFISICA(1, "Pesso Física"),
 	PESSOAJURIDICA(2, "Pesso Jurídica");
@@ -8,7 +8,7 @@ public enum TipoCliente {
 	private Integer codigo;
 	private String descricao;
 	
-	private TipoCliente(Integer codigo, String descricao) {
+	private TipoClienteEnum(Integer codigo, String descricao) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
@@ -21,13 +21,13 @@ public enum TipoCliente {
 		return descricao;
 	}
 	
-	public static TipoCliente buscaTipoCliente(Integer codigo) {
+	public static TipoClienteEnum buscaTipoCliente(Integer codigo) {
 		
 		if(codigo == null) {
 			return null;
 		}
 		
-		for(TipoCliente tipoCliente : TipoCliente.values()) {
+		for(TipoClienteEnum tipoCliente : TipoClienteEnum.values()) {
 			if(codigo.equals(tipoCliente.getCodigo())) {
 				return tipoCliente;
 			}

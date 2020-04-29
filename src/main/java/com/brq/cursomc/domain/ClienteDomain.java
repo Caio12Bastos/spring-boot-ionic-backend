@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.brq.cursomc.enums.TipoCliente;
+import com.brq.cursomc.enums.TipoClienteEnum;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -40,11 +40,14 @@ public class ClienteDomain implements Serializable {
 	@CollectionTable(name="telefone")
 	private Set<String> telefones = new HashSet<>();
 	
+	@OneToMany(mappedBy = "cliente")
+	private List<PedidoDomain> pedidos = new ArrayList<>();
+	
 	public ClienteDomain() {
 		
 	}
 
-	public ClienteDomain(Integer id, String nome, String email, String cpfCnpj, TipoCliente tipoCliente) {
+	public ClienteDomain(Integer id, String nome, String email, String cpfCnpj, TipoClienteEnum tipoCliente) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -85,11 +88,11 @@ public class ClienteDomain implements Serializable {
 		this.cpfCnpj = cpfCnpj;
 	}
 
-	public TipoCliente getTipoCliente() {
-		return TipoCliente.buscaTipoCliente(tipoCliente);
+	public TipoClienteEnum getTipoCliente() {
+		return TipoClienteEnum.buscaTipoCliente(tipoCliente);
 	}
 
-	public void setTipoCliente(TipoCliente tipoCliente) {
+	public void setTipoCliente(TipoClienteEnum tipoCliente) {
 		this.tipoCliente = tipoCliente.getCodigo();
 	}
 
@@ -109,6 +112,14 @@ public class ClienteDomain implements Serializable {
 		this.telefones = telefones;
 	}
 
+	public List<PedidoDomain> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<PedidoDomain> pedidos) {
+		this.pedidos = pedidos;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -133,5 +144,5 @@ public class ClienteDomain implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
