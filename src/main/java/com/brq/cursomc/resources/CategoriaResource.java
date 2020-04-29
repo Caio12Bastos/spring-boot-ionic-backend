@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.brq.cursomc.domain.CategoriaDomain;
 import com.brq.cursomc.services.CategoriaService;
+import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
 
 @RestController
 @RequestMapping(value="/categorias")
@@ -18,7 +19,7 @@ public class CategoriaResource {
 	private CategoriaService categoriaService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> buscarId(@PathVariable Integer id) {
+	public ResponseEntity<?> buscarId(@PathVariable Integer id) throws RecursoNaoEncontrado {
 		
 		CategoriaDomain categoriaDomain = categoriaService.buscar(id);
 		
