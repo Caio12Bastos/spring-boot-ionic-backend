@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.brq.cursomc.services.exception.DataIntegrityException;
 import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
+
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
@@ -17,5 +19,13 @@ public class ControllerExceptionHandler {
 		MensagemErro mensagemErro = new MensagemErro(
 				HttpStatus.NOT_FOUND.value(), excecao.getMessage(), System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensagemErro);
+	}
+	
+	@ExceptionHandler(DataIntegrityException.class)
+	public ResponseEntity<MensagemErro> dataIntegrity(DataIntegrityException excecao, HttpServletRequest request) {
+		
+		MensagemErro mensagemErro = new MensagemErro(
+				HttpStatus.BAD_REQUEST.value(), excecao.getMessage(), System.currentTimeMillis());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensagemErro);
 	}
 }
