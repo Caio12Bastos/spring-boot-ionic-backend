@@ -6,12 +6,15 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Item_Pedido")
 public class ItemPedidoDomain implements Serializable {
 	
 	private static final long serialVersionUID = 936662921597419241L;
 
+	@JsonIgnore
 	@EmbeddedId
 	private ItemPedidoPKDomain id = new ItemPedidoPKDomain();
 	
@@ -33,10 +36,12 @@ public class ItemPedidoDomain implements Serializable {
 		this.preco = preco;
 	}
 
+	@JsonIgnore
 	public PedidoDomain getPedido() {
 		return id.getPedido();
 	}
 	
+	@JsonIgnore
 	public ProdutoDomain getProduto() {
 		return id.getProduto();
 	}
