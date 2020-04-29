@@ -1,4 +1,4 @@
-package com.brq.cursomc.resources;
+package com.brq.cursomc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
 
 @RestController
 @RequestMapping(value="/categorias")
-public class CategoriaResource {
+public class CategoriaController {
 
 	@Autowired
 	private CategoriaService categoriaService;

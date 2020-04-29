@@ -1,4 +1,4 @@
-package com.brq.cursomc.resources.exception;
+package com.brq.cursomc.controller.exception;
 
 import java.io.Serializable;
 

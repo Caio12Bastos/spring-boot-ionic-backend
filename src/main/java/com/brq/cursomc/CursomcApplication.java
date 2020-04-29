@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.brq.cursomc.domain.CategoriaDomain;
 import com.brq.cursomc.domain.CidadeDomain;
+import com.brq.cursomc.domain.ClienteDomain;
+import com.brq.cursomc.domain.EnderecoDomain;
 import com.brq.cursomc.domain.EstadoDomain;
 import com.brq.cursomc.domain.ProdutoDomain;
+import com.brq.cursomc.enums.TipoCliente;
 import com.brq.cursomc.repositories.CategoriaRepository;
 import com.brq.cursomc.repositories.CidadeRepository;
+import com.brq.cursomc.repositories.ClienteRepository;
+import com.brq.cursomc.repositories.EnderecoRepository;
 import com.brq.cursomc.repositories.EstadoRepository;
 import com.brq.cursomc.repositories.ProdutoRepository;
 
@@ -30,6 +35,12 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -67,6 +78,20 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		estadoRepository.saveAll(Arrays.asList(estadoDomain1, estadoDomain2));
 		cidadeRepository.saveAll(Arrays.asList(cidadeDomain1, cidadeDomain2, cidadeDomain3));
+		
+		ClienteDomain clienteDomain1 = new ClienteDomain(
+				null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+		clienteDomain1.getTelefones().addAll(Arrays.asList("1112345678", "1198765432"));
+		
+		EnderecoDomain enderecoDomain1 = new EnderecoDomain(
+				null, "Rua Flores", "300", "Apto 300", "Jardim", "38220834", clienteDomain1, cidadeDomain1);
+		EnderecoDomain enderecoDomain2 = new EnderecoDomain(
+				null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", clienteDomain1, cidadeDomain2);
+		
+		clienteDomain1.getEnderecos().addAll(Arrays.asList(enderecoDomain1, enderecoDomain2));
+				
+		clienteRepository.saveAll(Arrays.asList(clienteDomain1));
+		enderecoRepository.saveAll(Arrays.asList(enderecoDomain1, enderecoDomain2));
 	}
 
 }

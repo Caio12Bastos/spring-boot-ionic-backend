@@ -1,4 +1,4 @@
-package com.brq.cursomc.resources.exception;
+package com.brq.cursomc.controller.exception;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
 @ControllerAdvice
-public class ResourceExceptionHandler {
+public class ControllerExceptionHandler {
 
 	@ExceptionHandler(RecursoNaoEncontrado.class)
 	public ResponseEntity<MensagemErro> recursoNaoEncontrado(RecursoNaoEncontrado excecao, HttpServletRequest request) {
