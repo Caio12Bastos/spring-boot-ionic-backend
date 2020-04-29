@@ -19,7 +19,7 @@ public class ClienteController {
 	private ClienteService clienteService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> buscarId(@PathVariable Integer id) throws RecursoNaoEncontrado {
+	public ResponseEntity<ClienteDomain> buscarId(@PathVariable Integer id) throws RecursoNaoEncontrado {
 		
 		ClienteDomain clienteDomain = clienteService.buscar(id);
 		

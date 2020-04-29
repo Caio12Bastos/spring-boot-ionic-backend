@@ -22,8 +22,15 @@ public class CategoriaService {
 				"Objeto não encontrado! Id: " + id)); 
 	}
 
-	public CategoriaDomain insert(CategoriaDomain categoria) {
+	public CategoriaDomain inserir(CategoriaDomain categoria) {
+		
 		categoria.setId(null);
+		return categoriaRepository.save(categoria);
+	}
+
+	public CategoriaDomain atualizar(CategoriaDomain categoria) {
+		
+		buscar(categoria.getId());
 		return categoriaRepository.save(categoria);
 	}
 	

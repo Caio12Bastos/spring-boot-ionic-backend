@@ -23,7 +23,7 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> buscarIdCategoria(@PathVariable Integer id) throws RecursoNaoEncontrado {
+	public ResponseEntity<CategoriaDomain> buscarIdCategoria(@PathVariable Integer id) throws RecursoNaoEncontrado {
 		
 		CategoriaDomain categoriaDomain = categoriaService.buscar(id);
 		
@@ -32,12 +32,22 @@ public class CategoriaController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserirCategoria(@RequestBody CategoriaDomain categoria) {
-		categoria = categoriaService.insert(categoria);
+		categoria = categoriaService.inserir(categoria);
 		
 		URI uriCategoria = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(categoria.getId()).toUri();
 		
 		return ResponseEntity.created(uriCategoria).build();
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> atualizarCategoria(@RequestBody CategoriaDomain categoria, @PathVariable Integer id) {
+		
+		categoria.setId(id);
+		
+		categoria = categoriaService.atualizar(categoria);
+		
+		return ResponseEntity.noContent().build();
 	}
 	
 }

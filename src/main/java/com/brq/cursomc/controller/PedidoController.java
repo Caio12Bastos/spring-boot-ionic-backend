@@ -19,7 +19,7 @@ public class PedidoController {
 	private PedidoService pedidoService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> buscarId(@PathVariable Integer id) throws RecursoNaoEncontrado {
+	public ResponseEntity<PedidoDomain> buscarId(@PathVariable Integer id) throws RecursoNaoEncontrado {
 		
 		PedidoDomain pedidoDomain = pedidoService.buscar(id);
 		
