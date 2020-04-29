@@ -21,5 +21,10 @@ public class CategoriaService {
 		return optCategoriaDomain.orElseThrow(() -> new RecursoNaoEncontrado( 
 				"Objeto não encontrado! Id: " + id)); 
 	}
+
+	public CategoriaDomain insert(CategoriaDomain categoria) {
+		categoria.setId(null);
+		return categoriaRepository.save(categoria);
+	}
 	
 }
