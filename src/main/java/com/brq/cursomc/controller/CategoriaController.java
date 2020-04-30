@@ -1,6 +1,8 @@
 package com.brq.cursomc.controller;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.brq.cursomc.domain.CategoriaDomain;
+import com.brq.cursomc.dto.CategoriaDTO;
 import com.brq.cursomc.services.CategoriaService;
 import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
 
@@ -56,6 +59,19 @@ public class CategoriaController {
 		categoriaService.detelar(id);
 		
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> buscarTodasCategoria() throws RecursoNaoEncontrado {
+		
+		List<CategoriaDomain> listaCategoriaDomain = categoriaService.buscarTodas();
+		List<CategoriaDTO> listaCategoriaDTO = 
+				listaCategoriaDomain.stream()
+					.map(categoriaDomain -> 
+						new CategoriaDTO(categoriaDomain))
+					.collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(listaCategoriaDTO);
 	}
 	
 }
