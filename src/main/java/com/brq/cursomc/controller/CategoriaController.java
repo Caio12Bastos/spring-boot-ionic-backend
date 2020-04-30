@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -35,21 +37,22 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> inserirCategoria(@RequestBody CategoriaDomain categoria) {
-		categoria = categoriaService.inserir(categoria);
+	public ResponseEntity<Void> inserirCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO) {
+		CategoriaDomain categoriaDomain = categoriaService.transformDTO(categoriaDTO);
+		categoriaDomain = categoriaService.inserir(categoriaDomain);
 		
 		URI uriCategoria = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(categoria.getId()).toUri();
+				.path("/{id}").buildAndExpand(categoriaDomain.getId()).toUri();
 		
 		return ResponseEntity.created(uriCategoria).build();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> atualizarCategoria(@RequestBody CategoriaDomain categoria, @PathVariable Integer id) {
+	public ResponseEntity<Void> atualizarCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO, @PathVariable Integer id) {
+		CategoriaDomain categoriaDomain = categoriaService.transformDTO(categoriaDTO);
 		
-		categoria.setId(id);
-		
-		categoria = categoriaService.atualizar(categoria);
+		categoriaDomain.setId(id);
+		categoriaDomain = categoriaService.atualizar(categoriaDomain);
 		
 		return ResponseEntity.noContent().build();
 	}
