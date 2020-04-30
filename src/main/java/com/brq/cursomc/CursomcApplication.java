@@ -72,6 +72,11 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		CategoriaDomain categoriaDomain1 = new CategoriaDomain(null, "Informática");
 		CategoriaDomain categoriaDomain2 = new CategoriaDomain(null, "Escritório");
+		CategoriaDomain categoriaDomain3 = new CategoriaDomain(null, "Cama mesa e banho");
+		CategoriaDomain categoriaDomain4 = new CategoriaDomain(null, "Eletrônicos");
+		CategoriaDomain categoriaDomain5 = new CategoriaDomain(null, "Jardinagem");
+		CategoriaDomain categoriaDomain6 = new CategoriaDomain(null, "Decoração");
+		CategoriaDomain categoriaDomain7 = new CategoriaDomain(null, "Perfumaria");
 		
 		ProdutoDomain produtoDomain1 = new ProdutoDomain(null, "Computador", 2000.00);
 		ProdutoDomain produtoDomain2 = new ProdutoDomain(null, "Impressora", 800.00);
@@ -84,7 +89,8 @@ public class CursomcApplication implements CommandLineRunner {
 		produtoDomain2.getCategorias().addAll(Arrays.asList(categoriaDomain1, categoriaDomain2));
 		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain1));
 		
-		categoriaRepository.saveAll(Arrays.asList(categoriaDomain1, categoriaDomain2));
+		categoriaRepository.saveAll(Arrays.asList(categoriaDomain1, categoriaDomain2, categoriaDomain3, categoriaDomain4,
+				categoriaDomain5, categoriaDomain6, categoriaDomain7));
 		produtoRepository.saveAll(Arrays.asList(produtoDomain1, produtoDomain2, produtoDomain3));
 
 		EstadoDomain estadoDomain1 = new EstadoDomain(null, "Minas Gerais");

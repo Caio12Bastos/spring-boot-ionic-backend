@@ -5,18 +5,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.brq.cursomc.domain.CategoriaDomain;
 import com.brq.cursomc.dto.CategoriaDTO;
 import com.brq.cursomc.services.CategoriaService;
-import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
 
 @RestController
 @RequestMapping(value="/categorias")
@@ -26,7 +27,7 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<CategoriaDomain> buscarIdCategoria(@PathVariable Integer id) throws RecursoNaoEncontrado {
+	public ResponseEntity<CategoriaDomain> buscarIdCategoria(@PathVariable Integer id) {
 		
 		CategoriaDomain categoriaDomain = categoriaService.buscar(id);
 		
@@ -62,7 +63,7 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<CategoriaDTO>> buscarTodasCategoria() throws RecursoNaoEncontrado {
+	public ResponseEntity<List<CategoriaDTO>> buscarTodasCategoria() {
 		
 		List<CategoriaDomain> listaCategoriaDomain = categoriaService.buscarTodas();
 		List<CategoriaDTO> listaCategoriaDTO = 
@@ -70,6 +71,22 @@ public class CategoriaController {
 					.map(categoriaDomain -> 
 						new CategoriaDTO(categoriaDomain))
 					.collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(listaCategoriaDTO);
+	}
+	
+	@RequestMapping(value = "/pagina", method = RequestMethod.GET)
+	public ResponseEntity<Page<CategoriaDTO>> buscarPaginacao(
+			@RequestParam(value = "pagina", defaultValue = "0") Integer pagina, 
+			@RequestParam(value = "linhaPorPagina", defaultValue = "24") Integer linhaPorPagina, 
+			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy, 
+			@RequestParam(value = "order", defaultValue = "ASC") String order) {
+		
+		Page<CategoriaDomain> listaCategoriaDomain = categoriaService.buscaPaginacao
+				(pagina, linhaPorPagina, orderBy, order);
+		
+		Page<CategoriaDTO> listaCategoriaDTO = 
+				listaCategoriaDomain.map(categoriaDomain -> new CategoriaDTO(categoriaDomain));
 		
 		return ResponseEntity.ok().body(listaCategoriaDTO);
 	}
