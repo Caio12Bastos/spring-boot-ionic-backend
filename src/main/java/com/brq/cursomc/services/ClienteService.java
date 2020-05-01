@@ -35,11 +35,6 @@ public class ClienteService {
 		return clienteRepository.save(novoClienteDomain);
 	}
 
-	private void atualizaDados(ClienteDomain novoClienteDomain, ClienteDomain cliente) {
-		novoClienteDomain.setNome(cliente.getNome());
-		novoClienteDomain.setEmail(cliente.getEmail());
-	}
-
 	public void detelar(Integer id) {
 
 		buscar(id);
@@ -64,4 +59,9 @@ public class ClienteService {
 		return new ClienteDomain(clienteDTO.getId(), clienteDTO.getNome(), clienteDTO.getEmail(), null, null);
 	}
 
+	private void atualizaDados(ClienteDomain novoClienteDomain, ClienteDomain cliente) {
+		novoClienteDomain.setNome(cliente.getNome());
+		novoClienteDomain.setEmail(cliente.getEmail());
+	}
+	
 }

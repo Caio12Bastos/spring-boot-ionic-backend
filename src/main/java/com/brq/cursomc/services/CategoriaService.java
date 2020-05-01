@@ -37,8 +37,9 @@ public class CategoriaService {
 
 	public CategoriaDomain atualizar(CategoriaDomain categoria) {
 		
-		buscar(categoria.getId());
-		return categoriaRepository.save(categoria);
+		CategoriaDomain novoCategoriaDomain = buscar(categoria.getId());
+		atualizaDados(novoCategoriaDomain, categoria);
+		return categoriaRepository.save(novoCategoriaDomain);
 	}
 
 	public void detelar(Integer id) {
@@ -64,6 +65,10 @@ public class CategoriaService {
 	
 	public CategoriaDomain transformDTO(CategoriaDTO categoriaDTO) {
 		return new CategoriaDomain(categoriaDTO.getId(), categoriaDTO.getNome());
+	}
+	
+	private void atualizaDados(CategoriaDomain novoCategoriaDomain, CategoriaDomain categoria) {
+		novoCategoriaDomain.setNome(categoria.getNome());
 	}
 	
 }
