@@ -1,4 +1,4 @@
-package com.brq.cursomc.controller;
+package com.brq.cursomc.controllers;
 
 import java.net.URI;
 import java.util.List;

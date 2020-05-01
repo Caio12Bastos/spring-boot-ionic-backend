@@ -1,9 +1,11 @@
-package com.brq.cursomc.controller.exception;
+package com.brq.cursomc.controllers.exception;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -27,5 +29,18 @@ public class ControllerExceptionHandler {
 		MensagemErro mensagemErro = new MensagemErro(
 				HttpStatus.BAD_REQUEST.value(), excecao.getMessage(), System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensagemErro);
+	}
+	
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<MensagemErro> validacao(MethodArgumentNotValidException excecao, HttpServletRequest request) {
+		
+		ErroValidacao erroValidacao = new ErroValidacao(
+				HttpStatus.BAD_REQUEST.value(), "Erro de validação", System.currentTimeMillis());
+		
+		for(FieldError erro : excecao.getBindingResult().getFieldErrors()) {
+			erroValidacao.addErro(erro.getField(), erro.getDefaultMessage());
+		}
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erroValidacao);
 	}
 }

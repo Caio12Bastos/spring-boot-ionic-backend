@@ -1,4 +1,4 @@
-package com.brq.cursomc.controller;
+package com.brq.cursomc.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
