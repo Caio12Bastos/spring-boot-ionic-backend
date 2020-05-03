@@ -1,5 +1,6 @@
 package com.brq.cursomc.controllers;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.brq.cursomc.domain.ClienteDomain;
 import com.brq.cursomc.dto.ClienteDTO;
+import com.brq.cursomc.dto.NovoClienteDTO;
 import com.brq.cursomc.services.ClienteService;
 import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
 
@@ -33,6 +36,17 @@ public class ClienteController {
 		ClienteDomain clienteDomain = clienteService.buscar(id);
 
 		return ResponseEntity.ok().body(clienteDomain);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> inserirCliente(@Valid @RequestBody NovoClienteDTO novoClienteDTO) {
+		ClienteDomain clienteDomain = clienteService.transformDTO(novoClienteDTO);
+		clienteDomain = clienteService.inserir(clienteDomain);
+		
+		URI uriCliente = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(clienteDomain.getId()).toUri();
+		
+		return ResponseEntity.created(uriCliente).build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
