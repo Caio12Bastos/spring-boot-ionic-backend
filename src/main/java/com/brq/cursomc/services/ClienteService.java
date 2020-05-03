@@ -91,6 +91,7 @@ public class ClienteService {
 		
 		clienteDomain.getEnderecos().add(enderecoDomain);
 		clienteDomain.getTelefones().add(novoClienteDTO.getTelefone1());
+		
 		if(novoClienteDTO.getTelefone2() != null) {
 			clienteDomain.getTelefones().add(novoClienteDTO.getTelefone2());
 		}
