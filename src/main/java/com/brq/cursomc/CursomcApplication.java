@@ -81,17 +81,40 @@ public class CursomcApplication implements CommandLineRunner {
 		ProdutoDomain produtoDomain1 = new ProdutoDomain(null, "Computador", 2000.00);
 		ProdutoDomain produtoDomain2 = new ProdutoDomain(null, "Impressora", 800.00);
 		ProdutoDomain produtoDomain3 = new ProdutoDomain(null, "Mouse", 80.00);
+		ProdutoDomain produtoDomain4 = new ProdutoDomain(null, "Mesa Escritório", 300.00);
+		ProdutoDomain produtoDomain5 = new ProdutoDomain(null, "Toalha", 50.00);
+		ProdutoDomain produtoDomain6 = new ProdutoDomain(null, "Colcha", 200.00);
+		ProdutoDomain produtoDomain7 = new ProdutoDomain(null, "TV true color", 1200.00);
+		ProdutoDomain produtoDomain8 = new ProdutoDomain(null, "Roçadeira", 800.00);
+		ProdutoDomain produtoDomain9 = new ProdutoDomain(null, "Abajour", 100.00);
+		ProdutoDomain produtoDomain10 = new ProdutoDomain(null, "Pente", 5.00);
+		ProdutoDomain produtoDomain11 = new ProdutoDomain(null, "Shampoo", 15.00);
 		
 		categoriaDomain1.getProdutos().addAll(Arrays.asList(produtoDomain1, produtoDomain2, produtoDomain3));
-		categoriaDomain2.getProdutos().addAll(Arrays.asList(produtoDomain2));
+		categoriaDomain2.getProdutos().addAll(Arrays.asList(produtoDomain2, produtoDomain4));
+		categoriaDomain3.getProdutos().addAll(Arrays.asList(produtoDomain5, produtoDomain6));
+		categoriaDomain4.getProdutos().addAll(Arrays.asList(produtoDomain1, produtoDomain4, produtoDomain3, produtoDomain7));
+		categoriaDomain5.getProdutos().addAll(Arrays.asList(produtoDomain8));
+		categoriaDomain6.getProdutos().addAll(Arrays.asList(produtoDomain9, produtoDomain10));
+		categoriaDomain7.getProdutos().addAll(Arrays.asList(produtoDomain11));
 		
-		produtoDomain1.getCategorias().addAll(Arrays.asList(categoriaDomain1));
-		produtoDomain2.getCategorias().addAll(Arrays.asList(categoriaDomain1, categoriaDomain2));
-		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain1));
+		produtoDomain1.getCategorias().addAll(Arrays.asList(categoriaDomain1, categoriaDomain4));
+		produtoDomain2.getCategorias().addAll(Arrays.asList(categoriaDomain1, categoriaDomain2, categoriaDomain4));
+		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain1, categoriaDomain4));
+		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain2));
+		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain3));
+		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain3));
+		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain4));
+		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain5));
+		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain6));
+		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain6));
+		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain7));
 		
 		categoriaRepository.saveAll(Arrays.asList(categoriaDomain1, categoriaDomain2, categoriaDomain3, categoriaDomain4,
 				categoriaDomain5, categoriaDomain6, categoriaDomain7));
-		produtoRepository.saveAll(Arrays.asList(produtoDomain1, produtoDomain2, produtoDomain3));
+		produtoRepository.saveAll(Arrays.asList(produtoDomain1, produtoDomain2, produtoDomain3, produtoDomain4,
+				produtoDomain5, produtoDomain6, produtoDomain7, produtoDomain8, produtoDomain9, produtoDomain10,
+				produtoDomain11));
 
 		EstadoDomain estadoDomain1 = new EstadoDomain(null, "Minas Gerais");
 		EstadoDomain estadoDomain2 = new EstadoDomain(null, "São Paulo");

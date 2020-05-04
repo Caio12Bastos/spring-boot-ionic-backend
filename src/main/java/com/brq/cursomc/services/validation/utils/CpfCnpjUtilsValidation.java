@@ -1,6 +1,6 @@
 package com.brq.cursomc.services.validation.utils;
 
-public class CpfCnpjUtils {
+public class CpfCnpjUtilsValidation {
 
 	//CPF
 	private static final int[] TAMANHO_CPF = {11 , 10 , 9 , 8 , 7 , 6 , 5 , 4 , 3 , 2};

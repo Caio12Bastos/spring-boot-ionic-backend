@@ -13,7 +13,7 @@ import com.brq.cursomc.domain.ClienteDomain;
 import com.brq.cursomc.dto.NovoClienteDTO;
 import com.brq.cursomc.enums.TipoClienteEnum;
 import com.brq.cursomc.repositories.ClienteRepository;
-import com.brq.cursomc.services.validation.utils.CpfCnpjUtils;
+import com.brq.cursomc.services.validation.utils.CpfCnpjUtilsValidation;
 
 public class ClienteInserirValidator implements ConstraintValidator<ClienteInserirValidation, NovoClienteDTO> {
 
@@ -30,13 +30,13 @@ public class ClienteInserirValidator implements ConstraintValidator<ClienteInser
 		List<CampoMensagem> listaCampoMensagem = new ArrayList<>();
 		
 		if(novoClienteDTO.getTipoCliente().equals(TipoClienteEnum.PESSOAFISICA.getCodigo()) && 
-				!CpfCnpjUtils.validaCPF(novoClienteDTO.getCpfCnpj())) {
+				!CpfCnpjUtilsValidation.validaCPF(novoClienteDTO.getCpfCnpj())) {
 			
 			listaCampoMensagem.add(new CampoMensagem("CpfCnpj", "CPF inválido"));
 		}
 		
 		if(novoClienteDTO.getTipoCliente().equals(TipoClienteEnum.PESSOAJURIDICA.getCodigo()) && 
-				!CpfCnpjUtils.validaCNPJ(novoClienteDTO.getCpfCnpj())) {
+				!CpfCnpjUtilsValidation.validaCNPJ(novoClienteDTO.getCpfCnpj())) {
 			
 			listaCampoMensagem.add(new CampoMensagem("CpfCnpj", "CNPJ inválido"));
 		}
