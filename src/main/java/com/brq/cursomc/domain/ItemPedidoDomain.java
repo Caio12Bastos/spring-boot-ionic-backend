@@ -37,7 +37,7 @@ public class ItemPedidoDomain implements Serializable {
 	}
 	
 	public Double getSubTotal() {
-		return (preco - desconto * quantidade);
+		return ((preco - desconto) * quantidade);
 	}
 
 	@JsonIgnore
@@ -45,9 +45,16 @@ public class ItemPedidoDomain implements Serializable {
 		return id.getPedido();
 	}
 	
-	@JsonIgnore
+	public void setPedido(PedidoDomain pedido) {
+		id.setPedido(pedido);
+	}
+	
 	public ProdutoDomain getProduto() {
 		return id.getProduto();
+	}
+	
+	public void setProduto(ProdutoDomain produto) {
+		id.setProduto(produto);
 	}
 	
 	public ItemPedidoPKDomain getId() {
