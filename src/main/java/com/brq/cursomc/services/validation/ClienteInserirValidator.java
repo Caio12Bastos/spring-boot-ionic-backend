@@ -15,13 +15,13 @@ import com.brq.cursomc.enums.TipoClienteEnum;
 import com.brq.cursomc.repositories.ClienteRepository;
 import com.brq.cursomc.services.validation.utils.CpfCnpjUtils;
 
-public class ClienteValidator implements ConstraintValidator<ClienteValidation, NovoClienteDTO> {
+public class ClienteInserirValidator implements ConstraintValidator<ClienteInserirValidation, NovoClienteDTO> {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
 	@Override
-	public void initialize(ClienteValidation constraintAnnotation) {
+	public void initialize(ClienteInserirValidation constraintAnnotation) {
 	}
 	
 	@Override

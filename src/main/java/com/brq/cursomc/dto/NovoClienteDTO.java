@@ -7,9 +7,9 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.brq.cursomc.services.validation.ClienteValidation;
+import com.brq.cursomc.services.validation.ClienteInserirValidation;
 
-@ClienteValidation
+@ClienteInserirValidation
 public class NovoClienteDTO implements Serializable {
 	
 	private static final long serialVersionUID = 5304614781778859207L;
