@@ -6,13 +6,20 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.brq.cursomc.controllers.exception.CampoMensagem;
+import com.brq.cursomc.domain.ClienteDomain;
 import com.brq.cursomc.dto.NovoClienteDTO;
 import com.brq.cursomc.enums.TipoClienteEnum;
+import com.brq.cursomc.repositories.ClienteRepository;
 import com.brq.cursomc.services.validation.utils.CpfCnpjUtils;
 
 public class ClienteValidator implements ConstraintValidator<ClienteValidation, NovoClienteDTO> {
 
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
 	@Override
 	public void initialize(ClienteValidation constraintAnnotation) {
 	}
@@ -33,6 +40,11 @@ public class ClienteValidator implements ConstraintValidator<ClienteValidation, 
 			
 			listaCampoMensagem.add(new CampoMensagem("CpfCnpj", "CNPJ inválido"));
 		}
+
+		ClienteDomain clienteDomain = clienteRepository.findByEmail(novoClienteDTO.getEmail());
+		if(clienteDomain != null) {
+			listaCampoMensagem.add(new CampoMensagem("email", "Email já existente"));
+		}
 		
 		for(CampoMensagem campoMensagem : listaCampoMensagem) {
 			context.disableDefaultConstraintViolation();
@@ -42,7 +54,5 @@ public class ClienteValidator implements ConstraintValidator<ClienteValidation, 
 		
 		return listaCampoMensagem.isEmpty();
 	}
-	
-		
 	
 }
