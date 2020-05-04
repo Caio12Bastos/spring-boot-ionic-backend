@@ -93,7 +93,7 @@ public class CursomcApplication implements CommandLineRunner {
 		categoriaDomain1.getProdutos().addAll(Arrays.asList(produtoDomain1, produtoDomain2, produtoDomain3));
 		categoriaDomain2.getProdutos().addAll(Arrays.asList(produtoDomain2, produtoDomain4));
 		categoriaDomain3.getProdutos().addAll(Arrays.asList(produtoDomain5, produtoDomain6));
-		categoriaDomain4.getProdutos().addAll(Arrays.asList(produtoDomain1, produtoDomain4, produtoDomain3, produtoDomain7));
+		categoriaDomain4.getProdutos().addAll(Arrays.asList(produtoDomain1, produtoDomain2, produtoDomain3, produtoDomain7));
 		categoriaDomain5.getProdutos().addAll(Arrays.asList(produtoDomain8));
 		categoriaDomain6.getProdutos().addAll(Arrays.asList(produtoDomain9, produtoDomain10));
 		categoriaDomain7.getProdutos().addAll(Arrays.asList(produtoDomain11));
@@ -101,14 +101,14 @@ public class CursomcApplication implements CommandLineRunner {
 		produtoDomain1.getCategorias().addAll(Arrays.asList(categoriaDomain1, categoriaDomain4));
 		produtoDomain2.getCategorias().addAll(Arrays.asList(categoriaDomain1, categoriaDomain2, categoriaDomain4));
 		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain1, categoriaDomain4));
-		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain2));
-		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain3));
-		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain3));
-		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain4));
-		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain5));
-		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain6));
-		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain6));
-		produtoDomain3.getCategorias().addAll(Arrays.asList(categoriaDomain7));
+		produtoDomain4.getCategorias().addAll(Arrays.asList(categoriaDomain2));
+		produtoDomain5.getCategorias().addAll(Arrays.asList(categoriaDomain3));
+		produtoDomain6.getCategorias().addAll(Arrays.asList(categoriaDomain3));
+		produtoDomain7.getCategorias().addAll(Arrays.asList(categoriaDomain4));
+		produtoDomain8.getCategorias().addAll(Arrays.asList(categoriaDomain5));
+		produtoDomain9.getCategorias().addAll(Arrays.asList(categoriaDomain6));
+		produtoDomain10.getCategorias().addAll(Arrays.asList(categoriaDomain6));
+		produtoDomain11.getCategorias().addAll(Arrays.asList(categoriaDomain7));
 		
 		categoriaRepository.saveAll(Arrays.asList(categoriaDomain1, categoriaDomain2, categoriaDomain3, categoriaDomain4,
 				categoriaDomain5, categoriaDomain6, categoriaDomain7));
