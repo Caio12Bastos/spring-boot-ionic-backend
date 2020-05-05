@@ -34,6 +34,9 @@ public class PedidoService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	
+	@Autowired
+	private ClienteService clienteService;
+	
 	public PedidoDomain buscar(Integer id) throws RecursoNaoEncontrado {
 		
 		Optional<PedidoDomain> optPedidoDomain = pedidoRepository.findById(id);
@@ -46,6 +49,7 @@ public class PedidoService {
 		
 		pedidoDomain.setId(null);
 		pedidoDomain.setDataPedido(new Date());
+		pedidoDomain.setCliente(clienteService.buscar(pedidoDomain.getCliente().getId()));
 		pedidoDomain.getPagamento().setEstado(EstadoPagamentoEnum.PENDENTE);
 		pedidoDomain.getPagamento().setPedido(pedidoDomain);
 		
@@ -59,12 +63,13 @@ public class PedidoService {
 	
 		for(ItemPedidoDomain itemPedidoDomain : pedidoDomain.getItens()) {
 			itemPedidoDomain.setDesconto(0.0);
-			itemPedidoDomain.setPreco(produtoService.buscar(itemPedidoDomain.getProduto().getId()).getPreco());
+			itemPedidoDomain.setProduto(produtoService.buscar(itemPedidoDomain.getProduto().getId()));
+			itemPedidoDomain.setPreco(itemPedidoDomain.getProduto().getPreco());
 			itemPedidoDomain.setPedido(pedidoDomain);
 		}
 		
 		itemPedidoRepository.saveAll(pedidoDomain.getItens());
-		
+		System.out.println(pedidoDomain);
 		return pedidoDomain;
 	}
 	
