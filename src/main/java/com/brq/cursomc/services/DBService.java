@@ -124,7 +124,7 @@ public class DBService {
 		cidadeRepository.saveAll(Arrays.asList(cidadeDomain1, cidadeDomain2, cidadeDomain3));
 		
 		ClienteDomain clienteDomain1 = new ClienteDomain(
-				null, "Maria Silva", "maria@gmail.com", "36378912377", TipoClienteEnum.PESSOAFISICA);
+				null, "Caio Bastos", "caio12bastos@gmail", "36378912377", TipoClienteEnum.PESSOAFISICA);
 		clienteDomain1.getTelefones().addAll(Arrays.asList("1112345678", "1198765432"));
 		
 		EnderecoDomain enderecoDomain1 = new EnderecoDomain(
