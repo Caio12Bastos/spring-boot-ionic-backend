@@ -37,6 +37,9 @@ public class PedidoService {
 	@Autowired
 	private ClienteService clienteService;
 	
+	@Autowired 
+	private EmailService emailService;
+	
 	public PedidoDomain buscar(Integer id) throws RecursoNaoEncontrado {
 		
 		Optional<PedidoDomain> optPedidoDomain = pedidoRepository.findById(id);
@@ -69,7 +72,7 @@ public class PedidoService {
 		}
 		
 		itemPedidoRepository.saveAll(pedidoDomain.getItens());
-		System.out.println(pedidoDomain);
+		emailService.enviarOrdemConfirmacaoEmail(pedidoDomain);
 		return pedidoDomain;
 	}
 	
