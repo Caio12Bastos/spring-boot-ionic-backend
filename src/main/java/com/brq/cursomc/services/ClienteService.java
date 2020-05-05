@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +31,10 @@ public class ClienteService {
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
-
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	public ClienteDomain buscar(Integer id) throws RecursoNaoEncontrado {
 
 		Optional<ClienteDomain> optClienteDomain = clienteRepository.findById(id);
@@ -75,13 +79,14 @@ public class ClienteService {
 	}
 
 	public ClienteDomain transformDTO(ClienteDTO clienteDTO) {
-		return new ClienteDomain(clienteDTO.getId(), clienteDTO.getNome(), clienteDTO.getEmail(), null, null);
+		return new ClienteDomain(clienteDTO.getId(), clienteDTO.getNome(), clienteDTO.getEmail(), null, null, null);
 	}
 
 	public ClienteDomain transformDTO(NovoClienteDTO novoClienteDTO) {
 
 		ClienteDomain clienteDomain = new ClienteDomain(null, novoClienteDTO.getNome(), novoClienteDTO.getEmail(), 
-				novoClienteDTO.getCpfCnpj(), TipoClienteEnum.buscaTipoCliente(novoClienteDTO.getTipoCliente()));
+				novoClienteDTO.getCpfCnpj(), TipoClienteEnum.buscaTipoCliente(novoClienteDTO.getTipoCliente()), 
+				bCryptPasswordEncoder.encode(novoClienteDTO.getSenha()));
 		
 		CidadeDomain cidadeDomain = new CidadeDomain(novoClienteDTO.getCidadeId(), null, null);
 		
