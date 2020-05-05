@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.brq.cursomc.domain.CategoriaDomain;
 import com.brq.cursomc.domain.PedidoDomain;
-import com.brq.cursomc.dto.CategoriaDTO;
 import com.brq.cursomc.services.PedidoService;
 import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
 
