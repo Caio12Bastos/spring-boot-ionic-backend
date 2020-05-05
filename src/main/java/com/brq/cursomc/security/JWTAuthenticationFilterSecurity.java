@@ -20,13 +20,13 @@ import com.brq.cursomc.dto.CredenciaisDTO;
 import com.brq.cursomc.security.util.JWTUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JWTAuthenticationFilterSecurity extends UsernamePasswordAuthenticationFilter {
 
 	private AuthenticationManager authenticationManager;
     
     private JWTUtil jwtUtil;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
+    public JWTAuthenticationFilterSecurity(AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
     	setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;

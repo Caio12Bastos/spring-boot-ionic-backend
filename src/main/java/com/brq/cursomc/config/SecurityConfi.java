@@ -18,7 +18,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.brq.cursomc.security.JWTAuthenticationFilter;
+import com.brq.cursomc.security.JWTAuthenticationFilterSecurity;
+import com.brq.cursomc.security.JWTAuthorizationFilterSecurity;
 import com.brq.cursomc.security.util.JWTUtil;
 
 @Configuration
@@ -40,8 +41,7 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter {
 	
 	private static final String[] PUBLIC_MATCHER_GET = {
 			"/produtos/**",
-			"/categorias/**",
-			"/clientes/**"
+			"/categorias/**"
 	};
 
 	@Override
@@ -56,7 +56,8 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHER_GET).permitAll()
 			.antMatchers(PUBLIC_MATCHER).permitAll()
 			.anyRequest().authenticated();
-		httpSecurity.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		httpSecurity.addFilter(new JWTAuthenticationFilterSecurity(authenticationManager(), jwtUtil));
+		httpSecurity.addFilter(new JWTAuthorizationFilterSecurity(authenticationManager(), jwtUtil, userDetailsService));
 		httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 	
