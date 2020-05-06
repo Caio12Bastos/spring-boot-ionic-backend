@@ -1,5 +1,6 @@
 package com.brq.cursomc.services;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.brq.cursomc.domain.CidadeDomain;
 import com.brq.cursomc.domain.ClienteDomain;
@@ -37,6 +39,9 @@ public class ClienteService {
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	private S3Service s3Service;
 	
 	public ClienteDomain buscar(Integer id) throws RecursoNaoEncontrado {
 
@@ -120,6 +125,10 @@ public class ClienteService {
 	private void atualizaDados(ClienteDomain novoClienteDomain, ClienteDomain cliente) {
 		novoClienteDomain.setNome(cliente.getNome());
 		novoClienteDomain.setEmail(cliente.getEmail());
+	}
+	
+	public URI uploadPerfilFoto(MultipartFile multipartFile) {
+		return s3Service.uploadFile(multipartFile);
 	}
 	
 }
