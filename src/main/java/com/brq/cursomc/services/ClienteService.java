@@ -1,10 +1,12 @@
 package com.brq.cursomc.services;
 
+import java.awt.image.BufferedImage;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,6 +44,15 @@ public class ClienteService {
 	
 	@Autowired
 	private S3Service s3Service;
+	
+	@Autowired
+	private ImagemService imagemService;
+	
+	@Value("${img.prefix.client.profile}")
+	private String prefixo;
+
+	@Value("${img.profile.size}")
+	private int tamanho;
 	
 	public ClienteDomain buscar(Integer id) throws RecursoNaoEncontrado {
 
@@ -134,14 +145,12 @@ public class ClienteService {
 			throw new AuthorizationException("Acesso negado");
 		}
 		
-		URI uri = s3Service.uploadFile(multipartFile);
+		BufferedImage jpgImagem = imagemService.getJpgImagemArquivo(multipartFile);
+		jpgImagem = imagemService.cortarQuadrado(jpgImagem);
+		jpgImagem = imagemService.redimensionar(jpgImagem, tamanho);
 		
-		Optional<ClienteDomain> clienteDomain = clienteRepository.findById(userSpringSecurity.getId());
-		clienteDomain.orElse(null).setImagemUrl(uri.toString());
-		
-		clienteRepository.save(clienteDomain.orElse(null));
-		
-		return uri;
+		String nomeArquivo = prefixo + userSpringSecurity.getId() + ".jpg";
+		return s3Service.uploadFile(imagemService.getInputStream(jpgImagem, "jpg"), nomeArquivo, "imagem");
 		
 	}
 	
