@@ -4,9 +4,13 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.brq.cursomc.domain.ClienteDomain;
 import com.brq.cursomc.domain.ItemPedidoDomain;
 import com.brq.cursomc.domain.PagamentoBoletoDomain;
 import com.brq.cursomc.domain.PedidoDomain;
@@ -14,6 +18,8 @@ import com.brq.cursomc.enums.EstadoPagamentoEnum;
 import com.brq.cursomc.repositories.ItemPedidoRepository;
 import com.brq.cursomc.repositories.PagamentoRepository;
 import com.brq.cursomc.repositories.PedidoRepository;
+import com.brq.cursomc.security.UserSpringSecurity;
+import com.brq.cursomc.services.exception.AuthorizationException;
 import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
 
 @Service
@@ -76,4 +82,15 @@ public class PedidoService {
 		return pedidoDomain;
 	}
 	
+	public Page<PedidoDomain> buscaPaginacao(Integer pagina, Integer linhaPorPagina, String orderBy, String order) {
+		
+		UserSpringSecurity userSpringSecurity = UserService.autenticado();
+		if(userSpringSecurity == null) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
+		PageRequest paginaRequest = PageRequest.of(pagina, linhaPorPagina, Direction.valueOf(order), orderBy);
+		ClienteDomain clienteDomain = clienteService.buscar(userSpringSecurity.getId());
+		return pedidoRepository.findByCliente(clienteDomain, paginaRequest);
+	}
 }
