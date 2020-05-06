@@ -17,9 +17,12 @@ import com.brq.cursomc.domain.ClienteDomain;
 import com.brq.cursomc.domain.EnderecoDomain;
 import com.brq.cursomc.dto.ClienteDTO;
 import com.brq.cursomc.dto.NovoClienteDTO;
+import com.brq.cursomc.enums.ClientePerfil;
 import com.brq.cursomc.enums.TipoClienteEnum;
 import com.brq.cursomc.repositories.ClienteRepository;
 import com.brq.cursomc.repositories.EnderecoRepository;
+import com.brq.cursomc.security.UserSpringSecurity;
+import com.brq.cursomc.services.exception.AuthorizationException;
 import com.brq.cursomc.services.exception.DataIntegrityException;
 import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
 
@@ -37,6 +40,13 @@ public class ClienteService {
 	
 	public ClienteDomain buscar(Integer id) throws RecursoNaoEncontrado {
 
+		UserSpringSecurity userSpringSecurity = UserService.autenticado();
+		if(userSpringSecurity == null ||  !userSpringSecurity.hasRole(ClientePerfil.ADMIN) && 
+				!id.equals(userSpringSecurity.getId())) {
+			
+			throw new AuthorizationException("Acesso negado");
+		}
+		
 		Optional<ClienteDomain> optClienteDomain = clienteRepository.findById(id);
 		return optClienteDomain.orElseThrow(() -> new RecursoNaoEncontrado("Objeto não encontrado! Id: " + id));
 	}
