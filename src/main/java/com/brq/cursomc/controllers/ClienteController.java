@@ -23,7 +23,6 @@ import com.brq.cursomc.domain.ClienteDomain;
 import com.brq.cursomc.dto.ClienteDTO;
 import com.brq.cursomc.dto.NovoClienteDTO;
 import com.brq.cursomc.services.ClienteService;
-import com.brq.cursomc.services.exception.RecursoNaoEncontrado;
 
 @RestController
 @RequestMapping(value = "/clientes")
@@ -33,9 +32,17 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<ClienteDomain> buscarId(@PathVariable Integer id) throws RecursoNaoEncontrado {
+	public ResponseEntity<ClienteDomain> buscarId(@PathVariable Integer id) {
 
 		ClienteDomain clienteDomain = clienteService.buscar(id);
+
+		return ResponseEntity.ok().body(clienteDomain);
+	}
+	
+	@RequestMapping(value = "/email", method = RequestMethod.GET)
+	public ResponseEntity<ClienteDomain> buscarEmail(@RequestParam(value = "value") String email) {
+
+		ClienteDomain clienteDomain = clienteService.buscarEmail(email);
 
 		return ResponseEntity.ok().body(clienteDomain);
 	}

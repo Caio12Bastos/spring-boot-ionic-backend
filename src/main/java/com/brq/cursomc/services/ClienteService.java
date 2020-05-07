@@ -98,6 +98,23 @@ public class ClienteService {
 		return clienteRepository.findAll();
 	}
 
+	public ClienteDomain buscarEmail(String email) {
+		
+		UserSpringSecurity userSpringSecurity = UserService.autenticado();
+		
+		if(userSpringSecurity == null || !userSpringSecurity.hasRole(ClientePerfil.ADMIN) && !email.equals(userSpringSecurity.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
+		ClienteDomain clienteDomain = clienteRepository.findByEmail(email);
+		
+		if(clienteDomain == null) {
+			throw new RecursoNaoEncontrado("Objeto não encontrado! Id: " + userSpringSecurity.getId() 
+					+ "Tipo: " + ClienteDomain.class.getName());
+		}
+		
+		return clienteDomain;
+	}
 	public Page<ClienteDomain> buscaPaginacao(Integer pagina, Integer linhaPorPagina, String orderBy, String order) {
 
 		PageRequest paginaRequest = PageRequest.of(pagina, linhaPorPagina, Direction.valueOf(order), orderBy);

@@ -89,7 +89,7 @@ public class CategoriaService {
 		novoCategoriaDomain.setNome(categoria.getNome());
 	}
 	
-public URI uploadPerfilFoto(MultipartFile multipartFile) {
+	public URI uploadPerfilFoto(MultipartFile multipartFile) {
 		
 		UserSpringSecurity userSpringSecurity = UserService.autenticado();
 		if(userSpringSecurity == null) {
