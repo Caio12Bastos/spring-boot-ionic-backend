@@ -9,8 +9,8 @@ public class ErroValidacao extends MensagemErro {
 
 	private List<CampoMensagem> erros = new ArrayList<>();
 	
-	public ErroValidacao(Integer status, String mensagem, Long tempoResposta) {
-		super(status, mensagem, tempoResposta);
+	public ErroValidacao(Long timestamp, Integer status, String error, String message, String path) {
+		super(timestamp, status, error, message, path);
 	}
 
 	public List<CampoMensagem> getErros() {
