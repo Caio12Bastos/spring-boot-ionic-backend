@@ -22,7 +22,7 @@ public class EstadoDomain implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String Nome;
+	private String nome;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "estado")
@@ -35,7 +35,7 @@ public class EstadoDomain implements Serializable {
 	public EstadoDomain(Integer id, String nome) {
 		super();
 		this.id = id;
-		Nome = nome;
+		this.nome = nome;
 	}
 
 	public Integer getId() {
@@ -47,11 +47,11 @@ public class EstadoDomain implements Serializable {
 	}
 
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
 
 	public List<CidadeDomain> getCidades() {
