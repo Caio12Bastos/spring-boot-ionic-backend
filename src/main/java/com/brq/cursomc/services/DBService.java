@@ -88,8 +88,53 @@ public class DBService {
 		ProdutoDomain produtoDomain9 = new ProdutoDomain(null, "Abajour", 100.00);
 		ProdutoDomain produtoDomain10 = new ProdutoDomain(null, "Pente", 5.00);
 		ProdutoDomain produtoDomain11 = new ProdutoDomain(null, "Shampoo", 15.00);
+		ProdutoDomain produtoDomain12 = new ProdutoDomain(null, "ProdutoDomain 12", 10.00);
+		ProdutoDomain produtoDomain13 = new ProdutoDomain(null, "ProdutoDomain 13", 10.00);
+		ProdutoDomain produtoDomain14 = new ProdutoDomain(null, "ProdutoDomain 14", 10.00);
+		ProdutoDomain produtoDomain15 = new ProdutoDomain(null, "ProdutoDomain 15", 10.00);
+		ProdutoDomain produtoDomain16 = new ProdutoDomain(null, "ProdutoDomain 16", 10.00);
+		ProdutoDomain produtoDomain17 = new ProdutoDomain(null, "ProdutoDomain 17", 10.00);
+		ProdutoDomain produtoDomain18 = new ProdutoDomain(null, "ProdutoDomain 18", 10.00);
+		ProdutoDomain produtoDomain19 = new ProdutoDomain(null, "ProdutoDomain 19", 10.00);
+		ProdutoDomain produtoDomain20 = new ProdutoDomain(null, "ProdutoDomain 20", 10.00);
+		ProdutoDomain produtoDomain21 = new ProdutoDomain(null, "ProdutoDomain 21", 10.00);
+		ProdutoDomain produtoDomain22 = new ProdutoDomain(null, "ProdutoDomain 22", 10.00);
+		ProdutoDomain produtoDomain23 = new ProdutoDomain(null, "ProdutoDomain 23", 10.00);
+		ProdutoDomain produtoDomain24 = new ProdutoDomain(null, "ProdutoDomain 24", 10.00);
+		ProdutoDomain produtoDomain25 = new ProdutoDomain(null, "ProdutoDomain 25", 10.00);
+		ProdutoDomain produtoDomain26 = new ProdutoDomain(null, "ProdutoDomain 26", 10.00);
+		ProdutoDomain produtoDomain27 = new ProdutoDomain(null, "ProdutoDomain 27", 10.00);
+		ProdutoDomain produtoDomain28 = new ProdutoDomain(null, "ProdutoDomain 28", 10.00);
+		ProdutoDomain produtoDomain29 = new ProdutoDomain(null, "ProdutoDomain 29", 10.00);
+		ProdutoDomain produtoDomain30 = new ProdutoDomain(null, "ProdutoDomain 30", 10.00);
+		ProdutoDomain produtoDomain31 = new ProdutoDomain(null, "ProdutoDomain 31", 10.00);
+		ProdutoDomain produtoDomain32 = new ProdutoDomain(null, "ProdutoDomain 32", 10.00);
+		ProdutoDomain produtoDomain33 = new ProdutoDomain(null, "ProdutoDomain 33", 10.00);
+		ProdutoDomain produtoDomain34 = new ProdutoDomain(null, "ProdutoDomain 34", 10.00);
+		ProdutoDomain produtoDomain35 = new ProdutoDomain(null, "ProdutoDomain 35", 10.00);
+		ProdutoDomain produtoDomain36 = new ProdutoDomain(null, "ProdutoDomain 36", 10.00);
+		ProdutoDomain produtoDomain37 = new ProdutoDomain(null, "ProdutoDomain 37", 10.00);
+		ProdutoDomain produtoDomain38 = new ProdutoDomain(null, "ProdutoDomain 38", 10.00);
+		ProdutoDomain produtoDomain39 = new ProdutoDomain(null, "ProdutoDomain 39", 10.00);
+		ProdutoDomain produtoDomain40 = new ProdutoDomain(null, "ProdutoDomain 40", 10.00);
+		ProdutoDomain produtoDomain41 = new ProdutoDomain(null, "ProdutoDomain 41", 10.00);
+		ProdutoDomain produtoDomain42 = new ProdutoDomain(null, "ProdutoDomain 42", 10.00);
+		ProdutoDomain produtoDomain43 = new ProdutoDomain(null, "ProdutoDomain 43", 10.00);
+		ProdutoDomain produtoDomain44 = new ProdutoDomain(null, "ProdutoDomain 44", 10.00);
+		ProdutoDomain produtoDomain45 = new ProdutoDomain(null, "ProdutoDomain 45", 10.00);
+		ProdutoDomain produtoDomain46 = new ProdutoDomain(null, "ProdutoDomain 46", 10.00);
+		ProdutoDomain produtoDomain47 = new ProdutoDomain(null, "ProdutoDomain 47", 10.00);
+		ProdutoDomain produtoDomain48 = new ProdutoDomain(null, "ProdutoDomain 48", 10.00);
+		ProdutoDomain produtoDomain49 = new ProdutoDomain(null, "ProdutoDomain 49", 10.00);
+		ProdutoDomain produtoDomain50 = new ProdutoDomain(null, "ProdutoDomain 50", 10.00);
 		
-		categoriaDomain1.getProdutos().addAll(Arrays.asList(produtoDomain1, produtoDomain2, produtoDomain3));
+		categoriaDomain1.getProdutos().addAll(Arrays.asList(produtoDomain12, produtoDomain13, produtoDomain14, 
+				produtoDomain15, produtoDomain16, produtoDomain17, produtoDomain18, produtoDomain19, produtoDomain20,
+				produtoDomain21, produtoDomain22, produtoDomain23, produtoDomain24, produtoDomain25, produtoDomain26, 
+				produtoDomain27, produtoDomain28, produtoDomain29, produtoDomain30, produtoDomain31, produtoDomain32, 
+				produtoDomain34, produtoDomain35, produtoDomain36, produtoDomain37, produtoDomain38, produtoDomain39, 
+				produtoDomain40, produtoDomain41, produtoDomain42, produtoDomain43, produtoDomain44, produtoDomain45, 
+				produtoDomain46, produtoDomain47, produtoDomain48, produtoDomain49, produtoDomain50));
 		categoriaDomain2.getProdutos().addAll(Arrays.asList(produtoDomain2, produtoDomain4));
 		categoriaDomain3.getProdutos().addAll(Arrays.asList(produtoDomain5, produtoDomain6));
 		categoriaDomain4.getProdutos().addAll(Arrays.asList(produtoDomain1, produtoDomain2, produtoDomain3, produtoDomain7));
@@ -108,12 +153,57 @@ public class DBService {
 		produtoDomain9.getCategorias().addAll(Arrays.asList(categoriaDomain6));
 		produtoDomain10.getCategorias().addAll(Arrays.asList(categoriaDomain6));
 		produtoDomain11.getCategorias().addAll(Arrays.asList(categoriaDomain7));
+		produtoDomain12.getCategorias().add(categoriaDomain1);
+		produtoDomain13.getCategorias().add(categoriaDomain1);
+		produtoDomain14.getCategorias().add(categoriaDomain1);
+		produtoDomain15.getCategorias().add(categoriaDomain1);
+		produtoDomain16.getCategorias().add(categoriaDomain1);
+		produtoDomain17.getCategorias().add(categoriaDomain1);
+		produtoDomain18.getCategorias().add(categoriaDomain1);
+		produtoDomain19.getCategorias().add(categoriaDomain1);
+		produtoDomain20.getCategorias().add(categoriaDomain1);
+		produtoDomain21.getCategorias().add(categoriaDomain1);
+		produtoDomain22.getCategorias().add(categoriaDomain1);
+		produtoDomain23.getCategorias().add(categoriaDomain1);
+		produtoDomain24.getCategorias().add(categoriaDomain1);
+		produtoDomain25.getCategorias().add(categoriaDomain1);
+		produtoDomain26.getCategorias().add(categoriaDomain1);
+		produtoDomain27.getCategorias().add(categoriaDomain1);
+		produtoDomain28.getCategorias().add(categoriaDomain1);
+		produtoDomain29.getCategorias().add(categoriaDomain1);
+		produtoDomain30.getCategorias().add(categoriaDomain1);
+		produtoDomain31.getCategorias().add(categoriaDomain1);
+		produtoDomain32.getCategorias().add(categoriaDomain1);
+		produtoDomain33.getCategorias().add(categoriaDomain1);
+		produtoDomain34.getCategorias().add(categoriaDomain1);
+		produtoDomain35.getCategorias().add(categoriaDomain1);
+		produtoDomain36.getCategorias().add(categoriaDomain1);
+		produtoDomain37.getCategorias().add(categoriaDomain1);
+		produtoDomain38.getCategorias().add(categoriaDomain1);
+		produtoDomain39.getCategorias().add(categoriaDomain1);
+		produtoDomain40.getCategorias().add(categoriaDomain1);
+		produtoDomain41.getCategorias().add(categoriaDomain1);
+		produtoDomain42.getCategorias().add(categoriaDomain1);
+		produtoDomain43.getCategorias().add(categoriaDomain1);
+		produtoDomain44.getCategorias().add(categoriaDomain1);
+		produtoDomain45.getCategorias().add(categoriaDomain1);
+		produtoDomain46.getCategorias().add(categoriaDomain1);
+		produtoDomain47.getCategorias().add(categoriaDomain1);
+		produtoDomain48.getCategorias().add(categoriaDomain1);
+		produtoDomain49.getCategorias().add(categoriaDomain1);
+		produtoDomain50.getCategorias().add(categoriaDomain1);
 		
 		categoriaRepository.saveAll(Arrays.asList(categoriaDomain1, categoriaDomain2, categoriaDomain3, categoriaDomain4,
 				categoriaDomain5, categoriaDomain6, categoriaDomain7));
 		produtoRepository.saveAll(Arrays.asList(produtoDomain1, produtoDomain2, produtoDomain3, produtoDomain4,
 				produtoDomain5, produtoDomain6, produtoDomain7, produtoDomain8, produtoDomain9, produtoDomain10,
-				produtoDomain11));
+				produtoDomain11, produtoDomain12, produtoDomain13, produtoDomain14, produtoDomain15, produtoDomain16, 
+				produtoDomain17, produtoDomain18, produtoDomain19, produtoDomain20, produtoDomain21, produtoDomain22, 
+				produtoDomain23, produtoDomain24, produtoDomain25, produtoDomain26, produtoDomain27, produtoDomain28, 
+				produtoDomain29, produtoDomain30, produtoDomain31, produtoDomain32, produtoDomain34, produtoDomain35, 
+				produtoDomain36, produtoDomain37, produtoDomain38, produtoDomain39, produtoDomain40, produtoDomain41, 
+				produtoDomain42, produtoDomain43, produtoDomain44, produtoDomain45, produtoDomain46, produtoDomain47, 
+				 produtoDomain48, produtoDomain49, produtoDomain50));
 
 		EstadoDomain estadoDomain1 = new EstadoDomain(null, "Minas Gerais");
 		EstadoDomain estadoDomain2 = new EstadoDomain(null, "São Paulo");
