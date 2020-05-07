@@ -49,8 +49,8 @@ public class ClienteService {
 	private ImagemService imagemService;
 	
 	@Value("${img.prefix.client.profile}")
-	private String prefixo;
-
+	private String prefixoCliente;
+	
 	@Value("${img.profile.size}")
 	private int tamanho;
 	
@@ -149,7 +149,7 @@ public class ClienteService {
 		jpgImagem = imagemService.cortarQuadrado(jpgImagem);
 		jpgImagem = imagemService.redimensionar(jpgImagem, tamanho);
 		
-		String nomeArquivo = prefixo + userSpringSecurity.getId() + ".jpg";
+		String nomeArquivo = prefixoCliente + userSpringSecurity.getId() + ".jpg";
 		return s3Service.uploadFile(imagemService.getInputStream(jpgImagem, "jpg"), nomeArquivo, "imagem");
 		
 	}

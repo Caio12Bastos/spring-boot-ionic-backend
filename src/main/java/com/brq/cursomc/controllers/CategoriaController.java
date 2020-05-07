@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.brq.cursomc.domain.CategoriaDomain;
@@ -96,6 +97,14 @@ public class CategoriaController {
 				listaCategoriaDomain.map(categoriaDomain -> new CategoriaDTO(categoriaDomain));
 		
 		return ResponseEntity.ok().body(listaCategoriaDTO);
+	}
+	
+	@RequestMapping(value = "/foto", method = RequestMethod.POST)
+	public ResponseEntity<Void> uploadFotoCategoria(@RequestParam (name="file") MultipartFile multipartFile) {
+		
+		URI uri = categoriaService.uploadPerfilFoto(multipartFile);
+		
+		return ResponseEntity.created(uri).build();
 	}
 	
 }

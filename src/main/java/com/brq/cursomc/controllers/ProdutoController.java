@@ -1,6 +1,7 @@
 package com.brq.cursomc.controllers;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.brq.cursomc.controllers.utils.URLUtilsController;
 import com.brq.cursomc.domain.ProdutoDomain;
@@ -54,5 +56,11 @@ public class ProdutoController {
 		return ResponseEntity.ok().body(listaProdutoDTO);
 	}
 
-	
+	@RequestMapping(value = "/foto", method = RequestMethod.POST)
+	public ResponseEntity<Void> uploadFotoProduto(@RequestParam (name="file") MultipartFile multipartFile) {
+		
+		URI uri = produtoService.uploadPerfilFoto(multipartFile);
+		
+		return ResponseEntity.created(uri).build();
+	}
 }
